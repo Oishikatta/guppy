@@ -36,6 +36,7 @@ function createText(texttype) {
 	
     $('body').on('click', 'div', function () {
         console.log( 'Clicked at:', Date.now() );
+        $('#fakeInput').focus();
         $('#guppy1').focus();
     });
 }
