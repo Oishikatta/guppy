@@ -37,5 +37,5 @@ function createText(texttype) {
     $('#stuff').on('click', function () {
         console.log( 'Clicked at:', Date.now() );
         $('#fakeInput').focus();
-    }
+    });
 }
