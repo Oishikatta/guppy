@@ -34,7 +34,7 @@ function createText(texttype) {
     $('#stuff')[0].appendChild(document.createElement('br'));
     $('#stuff')[0].appendChild(document.createTextNode(Guppy.instances.guppy1.get_content(texttype)));
 	
-    $('body').on('click', function () {
+    $('body').on('click', '#guppy1', function () {
         console.log( 'Clicked at:', Date.now() );
         $('#fakeInput').focus();
     });
