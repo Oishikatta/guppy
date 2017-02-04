@@ -48,6 +48,15 @@
 	 "is_bracket":["yes"]}
     },
     
+    "angle":
+    {"output":{
+        "latex":"<",
+        "text":"<"},
+    "type":"angle",
+    "attrs":{
+            "delete":[1]}
+    },
+    
     "floor":
     {"output":{
         "latex":"\\lfloor{$1}\\rfloor",
