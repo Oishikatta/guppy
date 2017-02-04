@@ -30,7 +30,6 @@ function flash_help(){
 function register_fake_handlers(){
     var fakeInput = document.querySelector('#fakeInput');
     var mt = new Mousetrap(fakeInput);
-    mt.addKeycodes({173: '-'}); // Firefox's special minus (needed for _ = sub binding)
     for(var i in Guppy.kb.k_chars)
     	mt.bind(i,function(i){ return function(){
 	    if(!Guppy.active_guppy) return true;
