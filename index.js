@@ -53,7 +53,11 @@ $('document').ready(function() {
         '(': 'shift+9',
         '<': 'shift+,',
         '-': 'shift+-',
-        '\\': 'shift+\\'
+        '\\': 'shift+\\',
+        
+        ' ': 'space',
+        ')': 'shift+0',
+        '>': 'shift+.'
         // missing up/down
     };
     
