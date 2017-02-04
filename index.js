@@ -26,30 +26,15 @@ $('document').ready(function() {
     $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
     $('#fakeInput').keypress(function (e) {
         console.log("Keypress", e);
-        if ( e.which === 229 ) {
-            var a = jQuery.Event('keypress');
-            // issue
-            a.which = $('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0);
-            $('#fakeInput').trigger(a);
-        }
+        Mousetrap.trigger($('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0););
     });
     $('#fakeInput').keydown(function (e) {
         console.log("Keydown", e);
-        if ( e.which === 229 ) {
-            var a = jQuery.Event('keydown');
-            // issue
-            a.which = $('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0);
-            $('#fakeInput').trigger(a);
-        }
+        Mousetrap.trigger($('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0););
     });
     $('#fakeInput').keyup(function (e) {
         console.log("Keyup", e);
-        if ( e.which === 229 ) {
-            var a = jQuery.Event('keyup');
-            // issue
-            a.which = $('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0);
-            $('#fakeInput').trigger(a);
-        }
+        Mousetrap.trigger($('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0););
     });
 });
 
