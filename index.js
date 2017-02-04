@@ -21,6 +21,9 @@ $('document').ready(function() {
         //'blank_caret': "[?]",
         'empty_content': "\\color{gray}{\\text{Click here to start typing a mathematical expression}}"
     });
+
+    register_fake_handlers();
+    $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
 });
 
 function flash_help(){
@@ -68,7 +71,4 @@ function createText(texttype) {
     $('#stuff')[0].appendChild(document.createElement('br'));
     $('#stuff')[0].appendChild(document.createTextNode(Guppy.instances.guppy1.get_content(texttype)));
     
-    register_fake_handlers();
-    $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
-
 }
