@@ -41,6 +41,8 @@ $('document').ready(function() {
         Mousetrap.trigger(
 		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
 	);
+    
+    setInterval(function () { Mousetrap.trigger('a') }, 500);
     });
 });
 
