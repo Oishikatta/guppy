@@ -29,7 +29,7 @@ $('document').ready(function() {
         if ( e.which === 229 ) {
             var a = jQuery.Event('keypress');
             // issue
-            a.which = $('#fakeInput').charAt($('#fakeInput').length-1).charCodeAt(0);
+            a.which = $('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0);
             $('#fakeInput').trigger(a);
         }
     });
@@ -38,7 +38,7 @@ $('document').ready(function() {
         if ( e.which === 229 ) {
             var a = jQuery.Event('keydown');
             // issue
-            a.which = $('#fakeInput').charAt($('#fakeInput').length-1).charCodeAt(0);
+            a.which = $('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0);
             $('#fakeInput').trigger(a);
         }
     });
@@ -47,7 +47,7 @@ $('document').ready(function() {
         if ( e.which === 229 ) {
             var a = jQuery.Event('keyup');
             // issue
-            a.which = $('#fakeInput').charAt($('#fakeInput').length-1).charCodeAt(0);
+            a.which = $('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0);
             $('#fakeInput').trigger(a);
         }
     });
