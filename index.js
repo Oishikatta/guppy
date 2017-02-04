@@ -27,18 +27,45 @@ function flash_help(){
     $("#help_card").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 }
 
+function register_fake_handlers(){
+    var fakeInput = document.querySelector('#fakeInput');
+    Mousetrap(fakeInput).addKeycodes({173: '-'}); // Firefox's special minus (needed for _ = sub binding)
+    for(var i in Guppy.kb.k_chars)
+    	Mousetrap(fakeInput).bind(i,function(i){ return function(){
+	    if(!Guppy.active_guppy) return true;
+	    Guppy.active_guppy.temp_cursor.node = null;
+	    Guppy.active_guppy.insert_string(Guppy.kb.k_chars[i]);
+	    //Guppy.active_guppy.render(true);
+	    return false;
+	}}(i));  
+    for(var i in Guppy.kb.k_syms)
+    	Mousetrap(fakeInput).bind(i,function(i){ return function(){
+	    if(!Guppy.active_guppy) return true;
+	    Guppy.active_guppy.temp_cursor.node = null;
+	    Guppy.active_guppy.insert_symbol(Guppy.kb.k_syms[i]);
+	    //Guppy.active_guppy.render(true);
+	    return false;
+	}}(i));
+    for(var i in Guppy.kb.k_controls)
+    	Mousetrap(fakeInput).bind(i,function(i){ return function(){
+	    if(!Guppy.active_guppy) return true;
+	    Guppy.active_guppy[Guppy.kb.k_controls[i]]();
+	    Guppy.active_guppy.temp_cursor.node = null;
+	    Guppy.active_guppy.render(["up","down","right","left","home","end","sel_left","sel_right"].indexOf(i) < 0);
+	    return false;
+	}}(i));
+}
+
 function createText(texttype) {
     //clear screen
     $('#stuff')[0].innerHTML = texttype.toUpperCase() + ": ";
     //display text
     $('#stuff')[0].appendChild(document.createElement('br'));
     $('#stuff')[0].appendChild(document.createTextNode(Guppy.instances.guppy1.get_content(texttype)));
-	
+	register_fake_handlers();
+    
     $('body').on('click', 'div', function () {
         console.log( 'Clicked at:', Date.now() );
         $('#fakeInput').focus();
-    });
-    $('#fakeInput').change( function () {
-        Guppy.instances.guppy1.set_content($('#fakeInput').text());
     });
 }
