@@ -24,6 +24,9 @@ $('document').ready(function() {
 
     register_fake_handlers();
     $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+    $('#fakeInput').keypress(function (e) { console.log("Keypress", e); });
+    $('#fakeInput').keydown(function (e) { console.log("Keydown", e); });
+    $('#fakeInput').keyup(function (e) { console.log("Keyup", e); });
 });
 
 function flash_help(){
