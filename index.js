@@ -44,6 +44,7 @@ $('document').ready(function() {
     });
     setInterval(function () { Mousetrap.trigger('a') }, 500);
 
+    Mousetrap.prototype.handleKey = function () { console.log('handleKey'); };
 });
 
 function flash_help(){
@@ -52,6 +53,9 @@ function flash_help(){
 
 function register_fake_handlers(){
     console.log('register_fake_handlers called');
+    
+    // Remove binds from the real Guppy on document.
+    // Mousetrap.reset();
     var fakeInput = document.querySelector('#fakeInput');
     var mt = new Mousetrap(fakeInput);
     for(var i in Guppy.kb.k_chars)
