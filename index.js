@@ -29,22 +29,25 @@ $('document').ready(function() {
         Mousetrap.trigger(
 		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
 	);
+        return false;
     });
     $('#fakeInput').keydown(function (e) {
         console.log("Keydown", e);
         Mousetrap.trigger(
 		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
 	);
+        return false;
     });
     $('#fakeInput').keyup(function (e) {
         console.log("Keyup", e);
         Mousetrap.trigger(
 		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
 	);
+        return false;
     });
     setInterval(function () { Mousetrap.trigger('a') }, 500);
 
-    Mousetrap.prototype.handleKey = function () { console.log('handleKey'); };
+    //Mousetrap.prototype.handleKey = function () { console.log('handleKey'); };
 });
 
 function flash_help(){
