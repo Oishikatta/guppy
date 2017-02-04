@@ -52,6 +52,7 @@
     {"output":{
         "latex":"<",
         "text":"<"},
+     "current":0,
     "type":"angle",
     "attrs":{
             "delete":[1]}
