@@ -24,7 +24,7 @@ $('document').ready(function() {
 
     register_fake_handlers();
     $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
-    $('#fakeInput').keypress(function (e) {
+    /*$('#fakeInput').keypress(function (e) {
         console.log("Keypress", e);
         Mousetrap.trigger(
 		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
@@ -46,7 +46,20 @@ $('document').ready(function() {
         return false;
     });
     setInterval(function () { Mousetrap.trigger('a') }, 500);
-
+	*/
+    $('#fakeInput').on('input change compositionstart compositionend compositionupdate', function (e) {
+        console.log(e);
+        
+        Guppy.instances.guppy1.set_content('<m><e></e></m>');
+        for ( var c of document.querySelector('#fakeInput').value ) {
+            console.log(c);
+            if ( c in Guppy.kb.k_chars ) {
+                Mousetrap.trigger(c);
+            } else if (c in Guppy.kb.k_syms) {
+                Mousetrap.trigger(c);
+            }
+        }
+    });
     //Mousetrap.prototype.handleKey = function () { console.log('handleKey'); };
 });
 
