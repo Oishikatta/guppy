@@ -28,6 +28,7 @@ function flash_help(){
 }
 
 function register_fake_handlers(){
+    console.log('register_fake_handlers called');
     var fakeInput = document.querySelector('#fakeInput');
     var mt = new Mousetrap(fakeInput);
     for(var i in Guppy.kb.k_chars)
@@ -60,7 +61,7 @@ function register_fake_handlers(){
 }
 
 register_fake_handlers();
-$('#fakeInput').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+$('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
 
 function createText(texttype) {
     //clear screen
