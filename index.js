@@ -47,15 +47,25 @@ $('document').ready(function() {
     });
     setInterval(function () { Mousetrap.trigger('a') }, 500);
 	*/
+    k_sym_reverse_map = {
+        '^': 'shift+6',
+        '*': 'shift+8',
+        '(': 'shift+9',
+        '<': 'shift+,',
+        '-': 'shift+-',
+        '\\': 'shift+\\'
+        // missing up/down
+    };
+    
     $('#fakeInput').on('input change compositionstart compositionend compositionupdate', function (e) {
         console.log(e);
         
         Guppy.instances.guppy1.set_content('<m><e></e></m>');
         for ( var c of document.querySelector('#fakeInput').value ) {
             console.log(c);
-            if ( c in Guppy.kb.k_chars ) {
-                Mousetrap.trigger(c);
-            } else if (c in Guppy.kb.k_syms) {
+            if ( c in k_sym_reverse_map ) {
+                Mousetrap.trigger(k_sym_reverse_map[c]);
+            } else {
                 Mousetrap.trigger(c);
             }
         }
