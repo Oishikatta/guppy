@@ -59,16 +59,13 @@ function register_fake_handlers(){
 	}}(i));
 }
 
+register_fake_handlers();
+$('#fakeInput').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+
 function createText(texttype) {
     //clear screen
     $('#stuff')[0].innerHTML = texttype.toUpperCase() + ": ";
     //display text
     $('#stuff')[0].appendChild(document.createElement('br'));
     $('#stuff')[0].appendChild(document.createTextNode(Guppy.instances.guppy1.get_content(texttype)));
-	register_fake_handlers();
-    
-    $('body').on('click', 'div', function () {
-        console.log( 'Clicked at:', Date.now() );
-        $('#fakeInput').focus();
-    });
 }
