@@ -22,7 +22,7 @@ $('document').ready(function() {
         'empty_content': "\\color{gray}{\\text{Click here to start typing a mathematical expression}}"
     });
 
-    register_fake_handlers();
+    //register_fake_handlers();
     $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
     /*$('#fakeInput').keypress(function (e) {
         console.log("Keypress", e);
