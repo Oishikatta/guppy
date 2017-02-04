@@ -60,8 +60,6 @@ function register_fake_handlers(){
 	}}(i));
 }
 
-register_fake_handlers();
-$('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
 
 function createText(texttype) {
     //clear screen
@@ -69,4 +67,8 @@ function createText(texttype) {
     //display text
     $('#stuff')[0].appendChild(document.createElement('br'));
     $('#stuff')[0].appendChild(document.createTextNode(Guppy.instances.guppy1.get_content(texttype)));
+    
+    register_fake_handlers();
+    $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+
 }
