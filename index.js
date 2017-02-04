@@ -32,6 +32,7 @@ function register_fake_handlers(){
     var mt = new Mousetrap(fakeInput);
     for(var i in Guppy.kb.k_chars)
     	mt.bind(i,function(i){ return function(){
+        console.log('Char:', i, Guppy.active_guppy);
 	    if(!Guppy.active_guppy) return true;
 	    Guppy.active_guppy.temp_cursor.node = null;
 	    Guppy.active_guppy.insert_string(Guppy.kb.k_chars[i]);
@@ -40,6 +41,7 @@ function register_fake_handlers(){
 	}}(i));  
     for(var i in Guppy.kb.k_syms)
     	mt.bind(i,function(i){ return function(){
+        console.log('sym:', i, Guppy.active_guppy);
 	    if(!Guppy.active_guppy) return true;
 	    Guppy.active_guppy.temp_cursor.node = null;
 	    Guppy.active_guppy.insert_symbol(Guppy.kb.k_syms[i]);
@@ -48,6 +50,7 @@ function register_fake_handlers(){
 	}}(i));
     for(var i in Guppy.kb.k_controls)
     	mt.bind(i,function(i){ return function(){
+        console.log('control:', i, Guppy.active_guppy);
 	    if(!Guppy.active_guppy) return true;
 	    Guppy.active_guppy[Guppy.kb.k_controls[i]]();
 	    Guppy.active_guppy.temp_cursor.node = null;
