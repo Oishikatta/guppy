@@ -61,7 +61,7 @@ $('document').ready(function() {
         // missing up/down
     };
     
-    $('#fakeInput').on('input change compositionstart compositionend compositionupdate', function (e) {
+    $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', function (e) {
         console.log(e);
         
         Guppy.instances.guppy1.set_content('<m><e></e></m>');
