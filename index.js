@@ -23,7 +23,7 @@ $('document').ready(function() {
     });
 
     // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
-    $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+    $('#guppy1').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
 
     // Mapping characters back to Mousetrap codes. Use Mousetrap.trigger(code) to replay them.
     k_sym_reverse_map = {
