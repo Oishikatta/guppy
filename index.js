@@ -39,13 +39,14 @@ $('document').ready(function() {
             'width': $('#guppy1').width(),
             'height': $('#guppy1').height()
         });
-        $('#fake_input').css({
+
+/*        $('#fake_input').css({
             'width': 0,
             'height': 0,
             'padding': 0,
             'margin': 0,
             'border': 0
-        });
+        });*/
 
         // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
         $('#start_btn').click(function(){
