@@ -26,7 +26,7 @@ $('document').ready(function() {
     if (/Mobi/.test(navigator.userAgent)) {
         var start_btn = $('<button id="start_btn"></button>');
         var fake_input = $('<textarea id="fake_input"></textarea>');
-        $('#guppy1').after(start_btn).after(fake_input);
+        $('#guppy1').after(fake_input).after(start_btn);
 
         var guppy1_offset = $('#guppy1').offset();
 
@@ -40,13 +40,13 @@ $('document').ready(function() {
             'height': $('#guppy1').height()
         });
 
-/*        $('#fake_input').css({
+        $('#fake_input').css({
             'width': 0,
             'height': 0,
             'padding': 0,
             'margin': 0,
             'border': 0
-        });*/
+        });
 
         // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
         $('#start_btn').click(function(){
