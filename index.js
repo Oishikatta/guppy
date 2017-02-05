@@ -25,7 +25,7 @@ $('document').ready(function() {
     // Only "show" the button for mobile devices.
     if (/Mobi/.test(navigator.userAgent)) {
         var start_btn = $('<button id="start_btn"></button>');
-        var fake_input = $('<textarea id="fakeInput"></textarea>');
+        var fake_input = $('<textarea id="fake_input"></textarea>');
         $('#guppy1').after(start_btn).after(fake_input);
 
         var guppy1_offset = $('#guppy1').offset();
@@ -48,7 +48,7 @@ $('document').ready(function() {
         });
 
         // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
-        $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+        $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fake_input').focus(); });
 
         // Mapping characters back to Mousetrap codes. Use Mousetrap.trigger(code) to replay them.
         k_sym_reverse_map = {
@@ -67,7 +67,7 @@ $('document').ready(function() {
         };
 
         // TODO: Determine which events are actually needed.
-        $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
+        $('#fake_input').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
             console.log(e);
 
             // Clear the Guppy instance by setting its content to the output of get_content when empty.
