@@ -22,31 +22,10 @@ $('document').ready(function() {
         'empty_content': "\\color{gray}{\\text{Click here to start typing a mathematical expression}}"
     });
 
-    //register_fake_handlers();
+    // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
     $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
-    /*$('#fakeInput').keypress(function (e) {
-        console.log("Keypress", e);
-        Mousetrap.trigger(
-		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
-	);
-        return false;
-    });
-    $('#fakeInput').keydown(function (e) {
-        console.log("Keydown", e);
-        Mousetrap.trigger(
-		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
-	);
-        return false;
-    });
-    $('#fakeInput').keyup(function (e) {
-        console.log("Keyup", e);
-        Mousetrap.trigger(
-		$('#fakeInput').val().charAt($('#fakeInput').length-1).charCodeAt(0)
-	);
-        return false;
-    });
-    setInterval(function () { Mousetrap.trigger('a') }, 500);
-	*/
+
+    // Mapping characters back to Mousetrap codes. Use Mousetrap.trigger(code) to replay them.
     k_sym_reverse_map = {
         '^': 'shift+6',
         '*': 'shift+8',
@@ -58,21 +37,26 @@ $('document').ready(function() {
         ' ': 'space',
         ')': 'shift+0',
         '>': 'shift+.'
-        // missing up/down
+        // Missing up/down - user will have to use [space], 'sub' instead.
+        // Mobile devices typically don't have arrow keys anyways.
     };
     
+    // TODO: Debounce; determine which events are actually needed.
     $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', function (e) {
         console.log(e);
         
+        // Clear the Guppy instance.
         Guppy.instances.guppy1.set_content('<m><e></e></m>');
         Guppy.instances.guppy1.render(true);
         
+        // Get the content of the text input field as an array of characters.
         var textContent = document.querySelector('#fakeInput').value.toLowerCase().split('');
         
         for ( var i = 0; i < textContent.length; i++ ) {
             c = textContent[i];
-            
             console.log(c);
+            
+            // Replay the key combination for each character on the document.
             if ( c in k_sym_reverse_map ) {
                 Mousetrap.trigger(k_sym_reverse_map[c]);
             } else {
@@ -80,49 +64,11 @@ $('document').ready(function() {
             }
         }
     });
-    //Mousetrap.prototype.handleKey = function () { console.log('handleKey'); };
 });
 
 function flash_help(){
     $("#help_card").fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 }
-
-function register_fake_handlers(){
-    console.log('register_fake_handlers called');
-    
-    // Remove binds from the real Guppy on document.
-    // Mousetrap.reset();
-    var fakeInput = document.querySelector('#fakeInput');
-    var mt = new Mousetrap(fakeInput);
-    for(var i in Guppy.kb.k_chars)
-    	mt.bind(i,function(i){ return function(){
-        console.log('Char:', i, Guppy.active_guppy);
-	    if(!Guppy.active_guppy) return true;
-	    Guppy.active_guppy.temp_cursor.node = null;
-	    Guppy.active_guppy.insert_string(Guppy.kb.k_chars[i]);
-	    //Guppy.active_guppy.render(true);
-	    return false;
-	}}(i));  
-    for(var i in Guppy.kb.k_syms)
-    	mt.bind(i,function(i){ return function(){
-        console.log('sym:', i, Guppy.active_guppy);
-	    if(!Guppy.active_guppy) return true;
-	    Guppy.active_guppy.temp_cursor.node = null;
-	    Guppy.active_guppy.insert_symbol(Guppy.kb.k_syms[i]);
-	    //Guppy.active_guppy.render(true);
-	    return false;
-	}}(i));
-    for(var i in Guppy.kb.k_controls)
-    	mt.bind(i,function(i){ return function(){
-        console.log('control:', i, Guppy.active_guppy);
-	    if(!Guppy.active_guppy) return true;
-	    Guppy.active_guppy[Guppy.kb.k_controls[i]]();
-	    Guppy.active_guppy.temp_cursor.node = null;
-	    Guppy.active_guppy.render(["up","down","right","left","home","end","sel_left","sel_right"].indexOf(i) < 0);
-	    return false;
-	}}(i));
-}
-
 
 function createText(texttype) {
     //clear screen
