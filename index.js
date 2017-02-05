@@ -55,7 +55,7 @@ $('document').ready(function() {
             fake_input_element.focus();
             
             // Place the cursor at the end of the text input, so that the user can use backspace to delete.
-            fake_input_element.setSelectionRange(fake_input_element.value.length, fake_input_element.value.length);
+            // fake_input_element.setSelectionRange(fake_input_element.value.length, fake_input_element.value.length);
 	});
 
         // Mapping characters back to Mousetrap codes. Use Mousetrap.trigger(code) to replay them.
