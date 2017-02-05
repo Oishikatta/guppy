@@ -67,7 +67,11 @@ $('document').ready(function() {
         Guppy.instances.guppy1.set_content('<m><e></e></m>');
         Guppy.instances.guppy1.render(true);
         
-        for ( var c of document.querySelector('#fakeInput').value ) {
+        var textContent = document.querySelector('#fakeInput').value.toLowerCase().split('');
+        
+        for ( var i = 0; i < textContent.length; i++ ) {
+            c = textContent[i];
+            
             console.log(c);
             if ( c in k_sym_reverse_map ) {
                 Mousetrap.trigger(k_sym_reverse_map[c]);
