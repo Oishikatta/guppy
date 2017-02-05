@@ -65,6 +65,8 @@ $('document').ready(function() {
         console.log(e);
         
         Guppy.instances.guppy1.set_content('<m><e></e></m>');
+        guppy.render(true);
+        
         for ( var c of document.querySelector('#fakeInput').value ) {
             console.log(c);
             if ( c in k_sym_reverse_map ) {
