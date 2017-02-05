@@ -42,8 +42,8 @@ $('document').ready(function() {
 
         // 1px and 0 opacity rather than 0px because of selection issues.
         $('#fake_input').css({
-            'width': 1px,
-            'height': 1px,
+            'width': '1px',
+            'height': '1px',
             'opacity': 0,
             'padding': 0,
             'margin': 0,
