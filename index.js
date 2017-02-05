@@ -52,6 +52,7 @@ $('document').ready(function() {
         '*': 'shift+8',
         '(': 'shift+9',
         '<': 'shift+,',
+        '>': 'shift+.',
         '\\': 'shift+\\',
         
         ' ': 'space',
