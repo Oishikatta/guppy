@@ -22,10 +22,11 @@ $('document').ready(function() {
         'empty_content': "\\color{gray}{\\text{Click here to start typing a mathematical expression}}"
     });
 
-    // Hide/remove the button overlay if not on mobile.
+    // Only "show" the button for mobile devices.
+    // Defaults to display:none so it does not interfere with desktop browsers.
     // Could also just create the button via javascript if on mobile.
-    if (!/Mobi/.test(navigator.userAgent)) {
-        $('#start_button').css('display', 'none');
+    if (/Mobi/.test(navigator.userAgent)) {
+        $('#start_btn').css('display', 'block');
     }
     
     // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
