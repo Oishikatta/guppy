@@ -76,15 +76,12 @@ $('document').ready(function() {
             // Missing up/down - user will have to use [space], 'sub' instead.
             // Mobile devices typically don't have arrow keys anyways.
         };
-
-        // TODO: Determine which events are actually needed.
-        $('#fake_input').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
-            console.log(e);
-
+        
+        function setGuppyContentFromInput() {
             // Clear the Guppy instance by setting its content to the output of get_content when empty.
             Guppy.instances.guppy1.set_content('<m><e></e></m>');
             Guppy.instances.guppy1.render(true);
-
+            
             // Get the content of the text input field as an array of characters.
             var textContent = document.querySelector('#fake_input').value.toLowerCase().split('');
 
@@ -99,7 +96,18 @@ $('document').ready(function() {
                     Mousetrap.trigger(c);
                 }
             }
+        }
+
+        // TODO: Determine which events are actually needed.
+        $('#fake_input').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
+            console.log(e);
+            setGuppyContentFromInput();
         }));
+        
+        $('#fake_input').on('blur', function () {
+            Guppy.instances.guppy1.activate();
+            setGuppyContentFromInput();
+        });
     }
 });
 
