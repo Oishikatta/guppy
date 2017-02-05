@@ -41,8 +41,8 @@ $('document').ready(function() {
         // Mobile devices typically don't have arrow keys anyways.
     };
     
-    // TODO: Debounce; determine which events are actually needed.
-    $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', function (e) {
+    // TODO: Determine which events are actually needed.
+    $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
         console.log(e);
         
         // Clear the Guppy instance.
@@ -63,7 +63,7 @@ $('document').ready(function() {
                 Mousetrap.trigger(c);
             }
         }
-    });
+    }));
 });
 
 function flash_help(){
