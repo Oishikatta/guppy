@@ -23,54 +23,73 @@ $('document').ready(function() {
     });
 
     // Only "show" the button for mobile devices.
-    // Defaults to display:none so it does not interfere with desktop browsers.
-    // Could also just create the button via javascript if on mobile.
     if (/Mobi/.test(navigator.userAgent)) {
-        $('#start_btn').css('display', 'block');
-    }
-    
-    // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
-    $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+        var start_btn = $('<button id="start_btn"></button>');
+        var fake_input = $('<textarea id="fakeInput"></textarea>');
+        $('#guppy1').after(start_btn).after(fake_input);
 
-    // Mapping characters back to Mousetrap codes. Use Mousetrap.trigger(code) to replay them.
-    k_sym_reverse_map = {
-        '^': 'shift+6',
-        '*': 'shift+8',
-        '(': 'shift+9',
-        '<': 'shift+,',
-        '>': 'shift+.',
-        '\\': 'shift+\\',
-        
-        ' ': 'space',
-        ')': 'shift+0',
-        '>': 'shift+.'
-        // Missing up/down - user will have to use [space], 'sub' instead.
-        // Mobile devices typically don't have arrow keys anyways.
-    };
-    
-    // TODO: Determine which events are actually needed.
-    $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
-        console.log(e);
-        
-        // Clear the Guppy instance by setting its content to the output of get_content when empty.
-        Guppy.instances.guppy1.set_content('<m><e></e></m>');
-        Guppy.instances.guppy1.render(true);
-        
-        // Get the content of the text input field as an array of characters.
-        var textContent = document.querySelector('#fakeInput').value.toLowerCase().split('');
-        
-        for ( var i = 0; i < textContent.length; i++ ) {
-            c = textContent[i];
-            console.log(c);
-            
-            // Replay the key combination for each character on the document.
-            if ( c in k_sym_reverse_map ) {
-                Mousetrap.trigger(k_sym_reverse_map[c]);
-            } else {
-                Mousetrap.trigger(c);
+        var guppy1_offset = $('#guppy1').offset();
+
+        $('#start_btn').css({
+            'opacity': 0,
+            'position': 'absolute',
+            'z-index': 9,
+            'top': guppy1_offset.top,
+            'left': guppy1_offset.left,
+            'width': $('#guppy1').width(),
+            'height': $('#guppy1').height()
+        });
+        $('#fake_input').css({
+            'width': 0,
+            'height': 0,
+            'padding': 0,
+            'margin': 0,
+            'border': 0
+        });
+
+        // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
+        $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
+
+        // Mapping characters back to Mousetrap codes. Use Mousetrap.trigger(code) to replay them.
+        k_sym_reverse_map = {
+            '^': 'shift+6',
+            '*': 'shift+8',
+            '(': 'shift+9',
+            '<': 'shift+,',
+            '>': 'shift+.',
+            '\\': 'shift+\\',
+
+            ' ': 'space',
+            ')': 'shift+0',
+            '>': 'shift+.'
+            // Missing up/down - user will have to use [space], 'sub' instead.
+            // Mobile devices typically don't have arrow keys anyways.
+        };
+
+        // TODO: Determine which events are actually needed.
+        $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
+            console.log(e);
+
+            // Clear the Guppy instance by setting its content to the output of get_content when empty.
+            Guppy.instances.guppy1.set_content('<m><e></e></m>');
+            Guppy.instances.guppy1.render(true);
+
+            // Get the content of the text input field as an array of characters.
+            var textContent = document.querySelector('#fakeInput').value.toLowerCase().split('');
+
+            for ( var i = 0; i < textContent.length; i++ ) {
+                c = textContent[i];
+                console.log(c);
+
+                // Replay the key combination for each character on the document.
+                if ( c in k_sym_reverse_map ) {
+                    Mousetrap.trigger(k_sym_reverse_map[c]);
+                } else {
+                    Mousetrap.trigger(c);
+                }
             }
-        }
-    }));
+        }));
+    }
 });
 
 function flash_help(){
