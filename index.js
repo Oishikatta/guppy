@@ -45,7 +45,7 @@ $('document').ready(function() {
     $('#fakeInput').on('input change compositionstart compositionend compositionupdate keydown', $.debounce(100, function (e) {
         console.log(e);
         
-        // Clear the Guppy instance.
+        // Clear the Guppy instance by setting its content to the output of get_content when empty.
         Guppy.instances.guppy1.set_content('<m><e></e></m>');
         Guppy.instances.guppy1.render(true);
         
