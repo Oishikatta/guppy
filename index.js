@@ -65,7 +65,7 @@ $('document').ready(function() {
         console.log(e);
         
         Guppy.instances.guppy1.set_content('<m><e></e></m>');
-        guppy.render(true);
+        Guppy.instances.guppy1.render(true);
         
         for ( var c of document.querySelector('#fakeInput').value ) {
             console.log(c);
