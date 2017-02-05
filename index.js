@@ -40,9 +40,11 @@ $('document').ready(function() {
             'height': $('#guppy1').height()
         });
 
+        // 1px and 0 opacity rather than 0px because of selection issues.
         $('#fake_input').css({
-            'width': 0,
-            'height': 0,
+            'width': 1px,
+            'height': 1px,
+            'opacity': 0,
             'padding': 0,
             'margin': 0,
             'border': 0
