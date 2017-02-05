@@ -48,7 +48,15 @@ $('document').ready(function() {
         });
 
         // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
-        $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fake_input').focus(); });
+        $('#start_btn').click(function(){
+            Guppy.instances.guppy1.activate();
+            
+            var fake_input_element = $('#fake_input')[0];
+            fake_input_element.focus();
+            
+            // Place the cursor at the end of the text input, so that the user can use backspace to delete.
+            fake_input_element.setSelectionRange(fake_input_element.value.length, fake_input_element.value.length);
+	});
 
         // Mapping characters back to Mousetrap codes. Use Mousetrap.trigger(code) to replay them.
         k_sym_reverse_map = {
