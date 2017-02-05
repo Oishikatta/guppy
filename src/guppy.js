@@ -130,7 +130,8 @@ Guppy.get_symbols = function(symbols, callback){
     var get_builtins = function(callback){
 	var greek_syms = ["alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa","lambda","mu","nu","xi","omicron","pi","rho","sigma","tau","upsilon","phi","chi","psi","omega","Gamma","Delta","Theta","Lambda","Xi","Pi","Sigma","Phi","Psi","Omega"];
 	var raw_syms = ["leq","geq","infty"];
-	var func_syms = ["sin","cos","tan","sec","csc","cot","log","ln"]
+	var func_syms = ["sin","cos","tan","sec","csc","cot","log","ln"];
+	var other_syms = {"less":["<","<"],"greater":[">",">"]};
 	
 	for(var i = 0; i < greek_syms.length; i++){
 	    Guppy.symb_raw(greek_syms[i],"{\\"+greek_syms[i]+"}"," $"+greek_syms[i]+" ");
@@ -142,6 +143,10 @@ Guppy.get_symbols = function(symbols, callback){
 	
 	for(var i = 0; i < func_syms.length; i++){
 	    Guppy.symb_func(func_syms[i]);
+	}
+	
+	for(var i in other_syms){
+	    Guppy.symb_raw(i, other_syms[i][0], other_syms[i][1]);
 	}
     
 	Guppy.symb_raw("*","\\cdot ","*");
@@ -482,23 +487,28 @@ Guppy.mouse_down = function(e){
     else while(n != null){
 	if(n.id in Guppy.instances){
 	    e.preventDefault();
-	    Guppy.active_guppy = Guppy.instances[n.id];
-	    Guppy.active_guppy.activate();
 	    for(var i in Guppy.instances){
-		if(i != n.id) Guppy.instances[i].deactivate();
+		Guppy.instances[i].deactivate();
 	    }
 	    var g = Guppy.active_guppy;
-	    if(e.shiftKey){
-		g.select_to(e.clientX, e.clientY, true);
-	    }
-	    else {
-		var loc = Guppy.get_loc(e.clientX,e.clientY);
-		if(!loc) return;
+	    if(g){
+		if(e.shiftKey){
+		    g.select_to(e.clientX, e.clientY, true);
+		}
+		else {
+		    var loc = Guppy.get_loc(e.clientX,e.clientY);
+		    if(!loc) return;
 		g.current = loc.current;
-		g.caret = loc.caret;
-		g.sel_status = Guppy.SEL_NONE;
+		    g.caret = loc.caret;
+		    g.sel_status = Guppy.SEL_NONE;
+		}
+		g.render(true);
 	    }
-	    g.render(true);
+	    else{
+		Guppy.active_guppy = Guppy.instances[n.id];
+		Guppy.active_guppy.activate();
+		Guppy.active_guppy.render(true);
+	    }
 	    return;
 	}
 	n = n.parentNode;
@@ -1748,7 +1758,8 @@ Guppy.kb.k_syms = {
     "shift+6":"exp",
     "shift+8":"*",
     "shift+9":"paren",
-    "shift+,":"angle",
+    "shift+,":"less",
+    "shift+.":"greater",
     "shift+-":"sub",
     "shift+\\":"abs",
     "shift+up":"exp",
