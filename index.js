@@ -22,6 +22,13 @@ $('document').ready(function() {
         'empty_content': "\\color{gray}{\\text{Click here to start typing a mathematical expression}}"
     });
 
+    // Only "show" the button for mobile devices.
+    // Defaults to display:none so it does not interfere with desktop browsers.
+    // Could also just create the button via javascript if on mobile.
+    if (/Mobi/.test(navigator.userAgent)) {
+        $('#start_button').css('display', 'block');
+    }
+    
     // The focus() call must be in a click event handler and on a text field to make the mobile keyboard appear.
     $('#start_btn').click(function(){ Guppy.instances.guppy1.activate(); $('#fakeInput').focus(); });
 
