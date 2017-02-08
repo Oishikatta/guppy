@@ -88,7 +88,7 @@ $('document').ready(function() {
             Guppy.instances.guppy1.render(true);
             
             // Get the content of the text input field as an array of characters.
-            var textContent = document.querySelector('#fake_input').value.toLowerCase().split('');
+            var textContent = document.querySelector('#fakeInputForMathExpression').value.toLowerCase().split('');
 
             for ( var i = 0; i < textContent.length; i++ ) {
                 c = textContent[i];
