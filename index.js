@@ -24,9 +24,11 @@ $('document').ready(function() {
 
     // Only "show" the button for mobile devices.
     if (/Mobi/.test(navigator.userAgent)) {
-        var start_btn = $('<button id="start_btn"></button>');
-        var fake_input = $('<textarea id="fake_input"></textarea>');
-        $('#guppy1').after(fake_input).after(start_btn);
+        var startMathInputButton = document.createElement('button');
+        startButton.setAttribute('id', 'startMathInputButton');
+        var fakeInputForMathExpression = document.createElement('textarea');
+        fakeInputForMathExpression.setAttribute('id', 'fakeInputForMathExpression');
+        $('#guppy1').after(fakeInputForMathExpression).after(startMathInputButton);
 
         var guppy1_offset = $('#guppy1').offset();
 
