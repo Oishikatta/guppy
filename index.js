@@ -25,7 +25,7 @@ $('document').ready(function() {
     // Only "show" the button for mobile devices.
     if (true || /Mobi/.test(navigator.userAgent)) {
         var startMathInputButton = document.createElement('button');
-        startButton.setAttribute('id', 'startMathInputButton');
+        startMathInputButton.setAttribute('id', 'startMathInputButton');
         var fakeInputForMathExpression = document.createElement('textarea');
         fakeInputForMathExpression.setAttribute('id', 'fakeInputForMathExpression');
         
