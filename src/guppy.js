@@ -1768,11 +1768,11 @@ Guppy.kb.k_chars = {
 };
 Guppy.kb.k_syms = {
     "/":"slash",
-    "shift+6":"exp",
-    "shift+8":"*",
-    "shift+9":"paren",
-    "shift+,":"less",
-    "shift+.":"greater",
+    "^":"exp",
+    "*":"*",
+    "(":"paren",
+    "<":"less",
+    ">":"greater",
     "shift+-":"sub",
     "shift+\\":"abs",
     "shift+up":"exp",
